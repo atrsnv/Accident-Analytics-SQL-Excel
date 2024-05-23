@@ -1,4 +1,3 @@
--- Коннектим БД, меняем типы данных там, где это нужно. (0)
 
 USE accidents_and_vehicles;
 
@@ -8,75 +7,71 @@ SELECT * FROM vehicle;
 ALTER TABLE vehicle
 ALTER COLUMN AgeVehicle INTEGER;
 
--- Сколько ДТП происходит в сельской местности или в городах? (6)а
+
 
 SELECT
 	area,
-	COUNT(AccidentIndex) AS 'Количество ДТП в разных видах местности'
+	COUNT(AccidentIndex) AS 'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г„Г’ГЏ Гў Г°Г Г§Г­Г»Гµ ГўГЁГ¤Г Гµ Г¬ГҐГ±ГІГ­Г®Г±ГІГЁ'
 FROM
 	accident
 GROUP BY area 
 
--- В какой день недели происходит наименьшее кол-во ДТП? (7)
+
 
 SELECT
 	Day, 
-	COUNT(AccidentIndex) AS 'Количество инцедентов по дням недели'
+	COUNT(AccidentIndex) AS 'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЁГ­Г¶ГҐГ¤ГҐГ­ГІГ®Гў ГЇГ® Г¤Г­ГїГ¬ Г­ГҐГ¤ГҐГ«ГЁ'
 FROM
 	accident 
 GROUP BY Day
 ORDER BY COUNT(AccidentIndex) ASC;
 
--- Каков средний возраст транспортного средства в аварии, в зависимости от типа транспорта? (8)
 
 SELECT
 	VehicleType,
-	COUNT(AccidentIndex) AS 'Количество инцедентов',
-	FORMAT(AVG(CAST(AgeVehicle AS DECIMAL)), '0') 'Средний возраст автомобиля'
+	COUNT(AccidentIndex) AS 'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЁГ­Г¶ГҐГ¤ГҐГ­ГІГ®Гў',
+	FORMAT(AVG(CAST(AgeVehicle AS DECIMAL)), '0') 'Г‘Г°ГҐГ¤Г­ГЁГ© ГўГ®Г§Г°Г Г±ГІ Г ГўГІГ®Г¬Г®ГЎГЁГ«Гї'
 FROM 
 	vehicle
 WHERE
 	 AgeVehicle IS NOT NULL
 GROUP BY 
 	VehicleType
-ORDER BY 'Средний возраст автомобиля' DESC;
+ORDER BY 'Г‘Г°ГҐГ¤Г­ГЁГ© ГўГ®Г§Г°Г Г±ГІ Г ГўГІГ®Г¬Г®ГЎГЁГ«Гї' DESC;
 
--- Могу ли я определить какие-либо тенденции в среднем значении ДТП, опираясь на состояние транспортных средств? (2)
+
 SELECT 
 	AgeGroup,
-	COUNT(AccidentIndex) AS 'Количество ДТП',
-	AVG(AgeVehicle) AS 'Средний возраст автомобилей'
+	COUNT(AccidentIndex) AS 'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г„Г’ГЏ',
+	AVG(AgeVehicle) AS 'Г‘Г°ГҐГ¤Г­ГЁГ© ГўГ®Г§Г°Г Г±ГІ Г ГўГІГ®Г¬Г®ГЎГЁГ«ГҐГ©'
 FROM (
 	SELECT
 		AccidentIndex,
 		AgeVehicle,
 		CASE
-			WHEN AgeVehicle BETWEEN 0 AND 4 THEN 'Новый'
-			WHEN AgeVehicle BETWEEN 5 AND 10 THEN 'Средний износ'
-			ELSE 'Изношенные'
+			WHEN AgeVehicle BETWEEN 0 AND 4 THEN 'ГЌГ®ГўГ»Г©'
+			WHEN AgeVehicle BETWEEN 5 AND 10 THEN 'Г‘Г°ГҐГ¤Г­ГЁГ© ГЁГ§Г­Г®Г±'
+			ELSE 'Г€Г§Г­Г®ГёГҐГ­Г­Г»ГҐ'
 		END AS AgeGroup
 	FROM vehicle
 ) AS SubQuery
 GROUP BY 
 	AgeGroup
-ORDER BY 'Количество ДТП' DESC;
+ORDER BY 'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г„Г’ГЏ' DESC;
 	
 
 
 
--- Есть ли связь между погодными условиями и степени серьезности ДТП? (5)
  
  SELECT DISTINCT Severity FROM accident;
- -- Slight :  Легкое ДТП,
- -- Serious : ДТП средней тяжести,
- -- Fatal : Смертельные ДТП.`
 
 
- -- Легкие происшествия и их количество: 
+
+
 
 SELECT
 	WeatherConditions,
-	COUNT(Severity) AS 'Количество ДТП'
+	COUNT(Severity) AS 'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г„Г’ГЏ'
 FROM 
 	accident
 WHERE
@@ -86,11 +81,11 @@ GROUP BY
 ORDER BY
 	COUNT(Severity) DESC;
 
- -- Тяжелые происшествия и их количество: 
+
 
  SELECT
 	WeatherConditions,
-	COUNT(Severity) AS 'Количество ДТП'
+	COUNT(Severity) AS 'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г„Г’ГЏ'
 FROM 
 	accident
 WHERE
@@ -100,11 +95,11 @@ GROUP BY
 ORDER BY
 	COUNT(Severity) DESC;
 
--- Смертельные происшествия и их количество:
+
 
  SELECT
 	WeatherConditions,
-	COUNT(Severity) AS 'Количество ДТП'
+	COUNT(Severity) AS 'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г„Г’ГЏ'
 FROM 
 	accident
 WHERE
@@ -114,29 +109,29 @@ GROUP BY
 ORDER BY
 	COUNT(Severity) DESC;
 
--- Часто ли ДТП связаны с тем, что водитель левша? (4)
+
 
 SELECT
 	LeftHand,
-	COUNT(AccidentIndex) AS  'Количество ДТП'
+	COUNT(AccidentIndex) AS  'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г„Г’ГЏ'
 FROM
 	vehicle 
 GROUP BY 
 	LeftHand
 HAVING
 	LeftHand IS NOT NULL
-ORDER BY 'Количество ДТП' DESC
+ORDER BY 'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г„Г’ГЏ' DESC
 
--- Существует ли связь между уровнем серьезности аварии и целью поездки? (1)
+
 
 SELECT
 	vehicle.JourneyPurpose,
-	COUNT(accident.Severity) AS 'Количество несчастных случаев',
+	COUNT(accident.Severity) AS 'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г­ГҐГ±Г·Г Г±ГІГ­Г»Гµ Г±Г«ГіГ·Г ГҐГў',
 	CASE
-		WHEN COUNT(accident.Severity) BETWEEN 0 AND 1100 THEN 'Низкий'
-		WHEN COUNT(accident.Severity) BETWEEN 1101 AND 3000 THEN 'Средний'
-		ELSE 'Высокий'
-	END AS 'Уровень серьезности ДТП'
+		WHEN COUNT(accident.Severity) BETWEEN 0 AND 1100 THEN 'ГЌГЁГ§ГЄГЁГ©'
+		WHEN COUNT(accident.Severity) BETWEEN 1101 AND 3000 THEN 'Г‘Г°ГҐГ¤Г­ГЁГ©'
+		ELSE 'Г‚Г»Г±Г®ГЄГЁГ©'
+	END AS 'Г“Г°Г®ГўГҐГ­Гј Г±ГҐГ°ГјГҐГ§Г­Г®Г±ГІГЁ Г„Г’ГЏ'
 FROM 
 	accident 
 JOIN 
@@ -147,12 +142,12 @@ ORDER BY
 	COUNT(accident.Severity) DESC
 
 
--- Средний возраст машины, с учетом дневного света и места удара (3)
+
 
 SELECT
 	vehicle.PointImpact,
 	accident.LightConditions,
-	COUNT(accident.AccidentIndex) AS'Количество ДТП'
+	COUNT(accident.AccidentIndex) AS'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г„Г’ГЏ'
 FROM 
 	accident 
 JOIN 
@@ -160,5 +155,5 @@ JOIN
 GROUP BY 
 	accident.LightConditions, vehicle.PointImpact
 ORDER BY 
-	'Количество ДТП' DESC;
+	'ГЉГ®Г«ГЁГ·ГҐГ±ГІГўГ® Г„Г’ГЏ' DESC;
 

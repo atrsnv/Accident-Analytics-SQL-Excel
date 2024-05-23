@@ -186,4 +186,4 @@ ORDER BY
 
 ![image](https://github.com/rezzstra/Accident-Analytics-SQL/assets/142921009/378029fb-abea-4ab2-860b-2e15196a801f)
 
-
+Большее число

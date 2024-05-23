@@ -28,6 +28,7 @@ ORDER BY
 **Результат:** 
 
 
-![image](https://github.com/rezzstra/Accident-Analytics-SQL/assets/142921009/7f5b2e74-1a12-4eb4-a582-b5b3565f3b75)
+![image](https://github.com/rezzstra/Accident-Analytics-SQL/assets/142921009/63b37501-0b1f-4e52-8b70-dc6c38c50a4a)
+
 
 

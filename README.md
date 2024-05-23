@@ -1,4 +1,4 @@
-![image](https://github.com/rezzstra/Accident-Analytics-SQL/assets/142921009/16c4d3a7-8850-4f6b-aa99-7b989e9d5089)# Accident-Analytics-SQL
+# Accident-Analytics-SQL
 
 ![image](https://github.com/rezzstra/Accident-Analytics-SQL/assets/142921009/d406ac8a-3f98-402a-b8cf-303777a5d9ed)
 

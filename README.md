@@ -1,4 +1,4 @@
-# Accident-Analytics-SQL
+![image](https://github.com/rezzstra/Accident-Analytics-SQL/assets/142921009/16c4d3a7-8850-4f6b-aa99-7b989e9d5089)# Accident-Analytics-SQL
 
 ![image](https://github.com/rezzstra/Accident-Analytics-SQL/assets/142921009/d406ac8a-3f98-402a-b8cf-303777a5d9ed)
 
@@ -141,4 +141,49 @@ ORDER BY
 
 
 ![image](https://github.com/rezzstra/Accident-Analytics-SQL/assets/142921009/91e79f36-a68e-4edc-b700-2432ff1b58cc)
+
+
+* Тяжелые происшествия и их количество
+
+```SQL
+ SELECT
+	WeatherConditions,
+	COUNT(Severity) AS 'Количество ДТП'
+FROM 
+	accident
+WHERE
+	Severity = 'Serious'
+GROUP BY
+	WeatherConditions
+ORDER BY
+	COUNT(Severity) DESC;
+```
+
+**Результат**: 
+
+
+![image](https://github.com/rezzstra/Accident-Analytics-SQL/assets/142921009/c84633db-500a-474d-98f2-8fb06286775a)
+
+
+* Смертельные происшествия и их количество
+
+```SQL
+ SELECT
+	WeatherConditions,
+	COUNT(Severity) AS 'Количество ДТП'
+FROM 
+	accident
+WHERE
+	Severity = 'Fatal'
+GROUP BY
+	WeatherConditions
+ORDER BY
+	COUNT(Severity) DESC;
+```
+
+**Результат**: 
+
+
+![image](https://github.com/rezzstra/Accident-Analytics-SQL/assets/142921009/378029fb-abea-4ab2-860b-2e15196a801f)
+
 
